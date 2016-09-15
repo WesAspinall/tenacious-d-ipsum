@@ -11,6 +11,13 @@ const browserify = require('browserify');
 const watch = require('gulp-watch');
 const uglify = require('gulp-uglify');
 
+
+//handlebars
+const handlebars = require('gulp-handlebars');
+const wrap = require('gulp-wrap');
+const declare = require('gulp-declare');
+const concat = require('gulp-concat');
+
 //css 
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
@@ -74,7 +81,7 @@ gulp.task('style:js', () => {
 gulp.task('hint:html', () => {
   return gulp.src('./app/index.html')
     .pipe(notifyError())
-    .pipe(htmlhint())
+    .pipe(htmlhint('.htmlhintrc'))
     .pipe(htmlhint.failReporter());
 });
 
@@ -98,10 +105,21 @@ gulp.task('browserify', () => {
     .pipe(gulp.dest('./app/js'));
 });
 
+gulp.task('templates', function(){
+  gulp.src('hbs-templates/*')
+    .pipe(handlebars())
+    .pipe(wrap('Handlebars.template(<%= contents %>)'))
+    .pipe(declare({
+      noRedeclare: true, // Avoid duplicate declarations 
+    }))
+    .pipe(concat('templates.js'))
+    .pipe(gulp.dest('./js'));
+});
 
 
 gulp.task('watch', () => {
   watch('./sass/**/*.scss', () => gulp.start('sass'));
+  watch('./hbs-templates/**/*', () => gulp.start('templates'));
   watch(['./js/**/*.js', './package.json'], () => gulp.start(['browserify']));
   watch('./app/index.html', () => gulp.start('hint:html'));
   watch('./js/**/*.js', () => gulp.start('style:js'));
@@ -132,6 +150,7 @@ gulp.task('default', [
   'sass',
   'fonts',
   'lint',
+  'templates',
   'browserify'
 ]);
 
