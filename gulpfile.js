@@ -1,141 +1,119 @@
+'use-strict';
+
 const gulp = require('gulp');
+      shell = require('gulp-shell');
+      sourcemaps = require('gulp-sourcemaps');
+      source = require('vinyl-source-stream');
+      buffer = require('vinyl-buffer');
+      babel = require('babelify');
+      browserify = require('browserify');
+      chalk = require('chalk');
+      watch = require('gulp-watch');
+      uglify = require('gulp-uglify');
+      sass = require('gulp-sass');
+      postcss = require('gulp-postcss');
+      autoprefixer = require('autoprefixer');
+      fontAwesome = require('node-font-awesome');
+      webserver = require('gulp-webserver');
+      eslint = require('gulp-eslint');
+      htmlhint = require('gulp-htmlhint');
+      notify = require('gulp-notify');
+      plumber = require('gulp-plumber');
 
-//streams
-const sourcemaps = require('gulp-sourcemaps');
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-
-// bundlers, watchers, etc.
-const babel = require('babelify');
-const browserify = require('browserify');
-const watch = require('gulp-watch');
-const uglify = require('gulp-uglify');
-
-//css 
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-
-//font libraries
-const fontAwesome = require('node-font-awesome');
-
-//localhost, node server
-const webserver = require('gulp-webserver');
-
-
-//linters
-const eslint = require('gulp-eslint');
-const htmlhint = require('gulp-htmlhint');
-
-//error handlers
-const notify = require('gulp-notify');
-const plumber = require('gulp-plumber');
-
-const notifyError = () => {
-  return plumber({
-    errorHandler: notify.onError("Error: <%= error.message %>")
-  });
+var handleError = function(err) {
+    notify.onError("Error, check terminal for details.")(err);
+    console.log(chalk.white.bgRed(' ------------------------------ '));
+    console.log(chalk.white(err.message));
+    console.log(chalk.white.bgRed(' ------------------------------ '));
+    this.emit('end');
 }
 
-const browserifyError = (err) => {
-  notify.onError("Error: <%= error.message %>")(err);
-  this.emit('end');
-}
-
-//////////////////////////
-// styles+fonts+linters// 
-////////////////////////
 gulp.task('sass', () => {
-  gulp.src('./sass/main.scss')
-    .pipe(notifyError())
-    .pipe(sourcemaps.init({
-      loadMaps: true
-    }))
-    .pipe(sass({
-      includePaths: require('node-neat').with([fontAwesome.scssPath])
-    }))
-    .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./app/css'));
+    gulp.src('./src/sass/main.scss')
+        .pipe(sourcemaps.init({
+            loadMaps: true
+        }))
+        .pipe(sass({
+            includePaths: require('node-neat').with([fontAwesome.scssPath])
+        }))
+        .pipe(postcss([autoprefixer({
+            browsers: ['last 2 versions']
+        })])).on('error', handleError)
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('./app/css'));
 });
 
 gulp.task('fonts', () => {
-  gulp.src(fontAwesome.fonts)
-    .pipe(notifyError())
-    .pipe(gulp.dest('./app/fonts'));
+    gulp.src(fontAwesome.fonts)
+        .pipe(gulp.dest('./app/fonts'));
 });
 
 gulp.task('style:js', () => {
-  return gulp.src('./js/**/**.js')
-    .pipe(eslint())
-    .pipe(eslint.format())
+    return gulp.src('./src/js/**/**.js')
+        .pipe(eslint())
+        .pipe(eslint.format())
 });
 
 gulp.task('hint:html', () => {
-  return gulp.src('./app/index.html')
-    .pipe(notifyError())
-    .pipe(htmlhint())
-    .pipe(htmlhint.failReporter());
+    return gulp.src('./app/index.html')
+        .pipe(htmlhint('.htmlhintrc'))
+        .pipe(htmlhint.failReporter());
 });
 
 
-///////////////
-// Bundlers //
-/////////////
 gulp.task('browserify', () => {
-  return browserify('./js/main.js', {
-      debug: true
-    })
-    .transform(babel)
-    .bundle()
-    .on('error', browserifyError)
-    .pipe(source('./main.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({
-      loadMaps: true
-    }))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./app/js'));
+    return browserify('./src/js/main.js', {
+            debug: true
+        })
+        .transform(babel)
+        .bundle()
+        .on('error', handleError)
+        .pipe(source('./main.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({
+            loadMaps: true
+        }))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('./app/js'));
 });
 
+gulp.task('handlebars', shell.task([
+    'handlebars src/views/templates/layout.handlebars -f src/views/precompiled/layout.js'
+]));
 
 
 gulp.task('watch', () => {
-  watch('./sass/**/*.scss', () => gulp.start('sass'));
-  watch(['./js/**/*.js', './package.json'], () => gulp.start(['browserify']));
-  watch('./app/index.html', () => gulp.start('hint:html'));
-  watch('./js/**/*.js', () => gulp.start('style:js'));
+    watch('./src/sass/**/*.scss', () => gulp.start('sass'));
+    watch('./src/views/templates/*', () => gulp.start(['handlebars']));
+    watch(['./src/js/**/*.js', './package.json', './src/views/precompiled/*'], () => gulp.start(['browserify']));
+    watch('./app/index.html', () => gulp.start('hint:html'));
+    watch('./src/js/**/*.js', () => gulp.start('style:js'));
 });
 
-//////////////////
-// server tasks//
-////////////////
+
 gulp.task('server', function() {
-  gulp.src('app')
-    .pipe(webserver({
-      livereload: {
-        enable: true, // need this set to true to enable livereload 
-        filter: function(fileName) {
-          if (fileName.match(/.map$/)) { // exclude all source maps from livereload 
-            return false;
-          } else {
-            return true;
-          }
-        }
-      }
-    }));
+    gulp.src(['app'])
+        .pipe(webserver({
+            livereload: {
+                enable: true, // need this set to true to enable livereload
+                filter: function(fileName) {
+                    if (fileName.match(/.map$/)) { // exclude all source maps from livereload 
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            }
+        }));
 });
 
 gulp.task('lint', ['style:js', 'hint:html']);
 
 gulp.task('default', [
-  'sass',
-  'fonts',
-  'lint',
-  'browserify'
+    'sass',
+    'fonts',
+    'lint',
+    'browserify'
 ]);
 
-
-//serve
 gulp.task('start', ['default', 'watch', 'server']);
-

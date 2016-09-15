@@ -2,19 +2,8 @@
 @import 'neat';
 @import 'font-awesome';
 
+@import 'variables';
 
 *, *:before, *:after {
     box-sizing: border-box;
-}
-
-.redText {
-    color: red;
-}
-
-.blueText {
-    color: blue;
-}
-
-.greenText {
-    color: green;
 }
