@@ -1,10 +1,9 @@
 import $ from 'jquery';
-import './templates.js';
-
+import '../views/precompiled/layout.js';
 
 const wordbank = require('./wordbank');
 
-let template = Handlebars.templates['dropdown'];
+let template = Handlebars.templates['layout'];
   
     
 let context = {
@@ -19,6 +18,15 @@ let context = {
     ],
 };
 
+$(document).ready(() => {
+    document.getElementById('app').innerHTML += templateData;
+    $('select').change(() => selectChanged());    
+});
+
+function selectChanged() {
+    console.log('hello, world');
+}
+
+
 let templateData = template(context);
 
-document.getElementById('app').innerHTML += templateData;
