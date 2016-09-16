@@ -1,32 +1,57 @@
 import $ from 'jquery';
-import '../views/precompiled/layout.js';
+import quotes from '../assets/data';
 
-const wordbank = require('./wordbank');
+'use-strict';
 
-let template = Handlebars.templates['layout'];
-  
+(function(){
+
+    function paragraphs() {
+        var output = '';
+
+        var selectVal = $('#select').val();
+        var randomLength = Math.floor(Math.random()* 0.5 * 666) + 666;
+
+        for(var i = 0; i < selectVal; i++){
+
+            var p = '<p>';
+            while(p.length <= randomLength){
+
+                var randomIndex = Math.floor(Math.random() * quotes.length);
+                p += (' ' + quotes[randomIndex].quote);    
+            }
+
+            p += '</p>';
+            output += p;
+        }
+
+        $('#output').html(output);
+    }
+
+
+
+    $(document).ready( function() {
+
+        paragraphs();
+        $('#select').change(() => {
+            paragraphs();
+            $('#select').val()
+        });
+    });
     
-let context = {
-    title: 'Tenacious D',
-    subheading: 'lorem ipsum',
-    dropdown: [
-        {paragraph: 'how many paragraphs'},
-        {paragraph: 1},
-        {paragraph: 2},
-        {paragraph: 3},
-        {paragraph: 4}
-    ],
-};
-
-$(document).ready(() => {
-    document.getElementById('app').innerHTML += templateData;
-    $('select').change(() => selectChanged());    
-});
-
-function selectChanged() {
-    console.log('hello, world');
-}
+})();
 
 
-let templateData = template(context);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
