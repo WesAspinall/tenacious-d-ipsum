@@ -1,5 +1,4 @@
-let context = {  
-    quotes: [
+let quotes = [
      {quote:'Dude.'},
      {quote:'Give it up for KG, give it up for me.'},
      {quote:'We\'ll lead as Two Kings, We\'ll f***in\' lead as Two Kings.'},
@@ -62,6 +61,6 @@ let context = {
      {quote:'How about the power to kill a yak, from 200 yards away, with mind-bullets?'},
      {quote:'Wonderboy, what is the secret of your power?'},
      {quote:'Couldn\'t split up Kato and Nash, that\'s true. Couldn\'t split up Tango and Cash, that\'s also true.'}
- ]
-}
- export default context;
+];
+
+export default quotes;
