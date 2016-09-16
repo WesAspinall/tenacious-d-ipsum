@@ -19,6 +19,7 @@ const gulp = require('gulp');
       htmlhint = require('gulp-htmlhint');
       notify = require('gulp-notify');
       plumber = require('gulp-plumber');
+      handlebars = require('gulp-handlebars');
 
 var handleError = function(err) {
     notify.onError("Error, check terminal for details.")(err);
@@ -77,14 +78,13 @@ gulp.task('browserify', () => {
         .pipe(gulp.dest('./app/js'));
 });
 
-gulp.task('handlebars', shell.task([
-    'handlebars src/views/templates/layout.handlebars -f src/views/precompiled/layout.js'
+gulp.task('precompile', shell.task([
+  'handlebars src/views/templates/layout.handlebars -f src/views/precompiled/layout.js'
 ]));
-
 
 gulp.task('watch', () => {
     watch('./src/sass/**/*.scss', () => gulp.start('sass'));
-    watch('./src/views/templates/*', () => gulp.start(['handlebars']));
+    watch(['./src/views/templates/*.handlebars','./src/views/context/*','./src/views/helpers/*'], () => gulp.start('precompile'));
     watch(['./src/js/**/*.js', './package.json', './src/views/precompiled/*'], () => gulp.start(['browserify']));
     watch('./app/index.html', () => gulp.start('hint:html'));
     watch('./src/js/**/*.js', () => gulp.start('style:js'));

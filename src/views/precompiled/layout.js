@@ -1,22 +1,14 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['layout'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+    var helper;
 
-  return "<option value='"
-    + alias4(((helper = (helper = helpers.paragraph || (depth0 != null ? depth0.paragraph : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"paragraph","hash":{},"data":data}) : helper)))
-    + "'>"
-    + alias4(((helper = (helper = helpers.paragraph || (depth0 != null ? depth0.paragraph : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"paragraph","hash":{},"data":data}) : helper)))
-    + "</option>\n";
+  return container.escapeExpression(((helper = (helper = helpers.quote || (depth0 != null ? depth0.quote : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"quote","hash":{},"data":data}) : helper)));
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+    var stack1;
 
-  return "<h1>"
-    + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-    + "</h1>\n<h3>"
-    + alias4(((helper = (helper = helpers.subheading || (depth0 != null ? depth0.subheading : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"subheading","hash":{},"data":data}) : helper)))
-    + "</h1>\n<select id='paragraph-select' name='paragraph'>\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.dropdown : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</select>\n";
+  return "<div>\n<h1>Tenacious D</h1>\n<h3>lorem ipsum</h3>\n<select id='select'>\n    <option value= \"1\">1</option>\n    <option value= \"2\" selected>2</option>\n    <option value= \"3\">3</option>\n    <option value= \"4\">4</option>\n</select>\n<section>\n"
+    + ((stack1 = (helpers.paragraphs || (depth0 && depth0.paragraphs) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.quotes : depth0),{"name":"paragraphs","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n</section>\n</div>";
 },"useData":true});
 })();

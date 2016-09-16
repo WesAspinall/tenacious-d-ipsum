@@ -9823,59 +9823,87 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-require('../views/precompiled/layout.js');
+require('../views/index');
 
-var wordbank = require('./wordbank');
+(function () {})();
+
+},{"../views/index":5,"jquery":1}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var context = {
+  quotes: [{ quote: 'Dude.' }, { quote: 'Give it up for KG, give it up for me.' }, { quote: 'We\'ll lead as Two Kings, We\'ll f***in\' lead as Two Kings.' }, { quote: 'Lee-Lee-Lee Lee-Lee Lee-Lee-Lee-Lee.' }, { quote: 'Get the scientists working on the tube technology, immediately. Chop chop!' }, { quote: 'This is just a tribute.' }, { quote: 'The sun doth shine and the moon doth glow.' }, { quote: 'That\'s levitation, holmes.' }, { quote: 'Please don\'t, don\'t offer me anything, I\'ll, I\'ll tell you what I want.' }, { quote: 'Take the six nuggets and throw two of them away. I\'m just wantin\' a four nugget thing.' }, { quote: 'I\'m tryin\' to watch my calorie intake.' }, { quote: 'The most powerful tool in singing technology since yodelling, dude.' }, { quote: 'Do you believe there are robots living among us?' }, { quote: 'With karate I\'ll kick your a**, from here to right over there.' }, { quote: 'Cause it\'s the pick... of destiny.' }, { quote: 'I\'m the devil, I love metal.' }, { quote: 'Do you believe in God?' }, { quote: 'There\'s just no way that we can win, that was a masterpiece.' }, { quote: 'He rocks too hard because he\'s not a mortal man.' }, { quote: 'Yeah that was awesome. Compared to bull***t.' }, { quote: 'Can\'t you see he\'s the man, let me hear you applaud, he is more than a man he\'s a shiny golden god.' }, { quote: 'The demon code prevents me from declining a rock off challenge.' }, { quote: 'I did not mean to blow your mind.' }, { quote: 'New-wave tried to kill the metal.' }, { quote: 'Punk-rock tried to kill the metal.' }, { quote: 'Cause he who is sleazy, is easy to pleasy.' }, { quote: 'Hail Satan.' }, { quote: 'In Venice Beach there was a man named Kage.' }, { quote: 'We know you\'re all robots and we don\'t care Tenacious D, we reign!' }, { quote: 'Dude, I totally miss you.' }, { quote: 'Two air vents on the roof.' }, { quote: 'The government totally sucks.' }, { quote: 'You\'ve disobeyed my orders, son, Why were you ever born?' }, { quote: 'Your brother\'s 10x better than you Jesus loves him more.' }, { quote: 'In the city of fallen angels, where the ocean meets the sand, we will form a strong alliance.' }, { quote: 'Friendship is rare, do you know what I\'m saying to you?' }, { quote: 'I\'m not gonna cook it but I\'ll order it from Zanzibar.' }, { quote: 'Sometimes you have to say please.' }, { quote: 'Whooooahahaha!' }, { quote: 'If me and Lee and KG could be three, flying free tenaciously.' }, { quote: 'Better, closer, warmer.' }, { quote: 'They must pay the rent, with their rock.' }, { quote: 'Techno tried to defile the metal, but techno was proven wrong.' }, { quote: 'Cuz the land of love and freedom is just a baby\'s breath away. If we hold hands together, we can take back the USA.' }, { quote: 'That was awesome. You changed people\'s lives tonight.' }, { quote: 'Ben Franklin was a rebel indeed' }, { quote: 'Do you think it will make us um, more attractive to the ladies?' }, { quote: 'I am not one of you. I come from an ancient time. I am known as The Kicker of Elves. I am also known as The Angel Crusher.' }, { quote: 'We are fuelled by Satan, yes we\'re schooled by Satan.' }, { quote: 'Last week, Kyle quit the band. But now we\'re back together.' }, { quote: 'High above the mucky-muck, castle made of clouds. There sits Wonderboy, sitting oh so proudly.' }, { quote: 'I love you. I said I love you, man. Just wanted to say it.' }, { quote: 'Let\'s take a dip in the strawberry river!' }, { quote: 'And then after the smoke is cleared, and the rubble has been swept away, me and KG will peek out our heads.' }, { quote: 'The second decree: no more pollution, no more car exhaust, or ocean dumpage. From now on, we will travel in tubes! ' }, { quote: 'Riggah-goo-goo, riggah-goo-goo.' }, { quote: 'After years of hesitation, I went ahead and rocked out on the D at a live show. Needless to say, I impregnated everyone in the front row.' }, { quote: 'Long live me, I poisoned  your wine.' }, { quote: 'That---what happened before when I said I love you, that was a test. Because, man, I could\'ve made a total ASS of myself if I hadn\'t done this test on you.' }, { quote: 'How about the power to kill a yak, from 200 yards away, with mind-bullets?' }, { quote: 'Wonderboy, what is the secret of your power?' }, { quote: 'Couldn\'t split up Kato and Nash, that\'s true. Couldn\'t split up Tango and Cash, that\'s also true.' }]
+};
+exports['default'] = context;
+module.exports = exports['default'];
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+require('../precompiled/layout');
+
+var _contextContext = require('../context/context');
+
+var _contextContext2 = _interopRequireDefault(_contextContext);
 
 var template = Handlebars.templates['layout'];
 
-var context = {
-    title: 'Tenacious D',
-    subheading: 'lorem ipsum',
-    dropdown: [{ paragraph: 'how many paragraphs' }, { paragraph: 1 }, { paragraph: 2 }, { paragraph: 3 }, { paragraph: 4 }]
-};
+Handlebars.registerHelper('paragraphs', function (items, options) {
+
+    var output = '';
+    var randomLength = Math.floor(Math.random() * 0.5 * 400) + 400;
+
+    for (var i = 0; i < 8; i++) {
+        var p = '<p>';
+        while (p.length < randomLength) {
+            var randomIndex = Math.floor(Math.random() * items.length);
+            p += ' ' + options.fn(items[randomIndex]);
+        };
+
+        p += '</p>';
+        output += p;
+    };
+
+    return output;
+});
+
+var templateData = template(_contextContext2['default']);
 
 (0, _jquery2['default'])(document).ready(function () {
     document.getElementById('app').innerHTML += templateData;
-    (0, _jquery2['default'])('select').change(function () {
-        return selectChanged();
-    });
 });
 
-function selectChanged() {
-    console.log('hello, world');
-}
-
-var templateData = template(context);
-
-},{"../views/precompiled/layout.js":4,"./wordbank":3,"jquery":1}],3:[function(require,module,exports){
+},{"../context/context":3,"../precompiled/layout":6,"jquery":1}],5:[function(require,module,exports){
 'use strict';
 
-module.exports = ['Dude.', 'Give it up for KG, give it up for me.', 'We\'ll lead as Two Kings, We\'ll f***in\' lead as Two Kings.', 'Lee-Lee-Lee Lee-Lee Lee-Lee-Lee-Lee.', 'Get the scientists working on the tube technology, immediately. Chop chop!', 'This is just a tribute.', 'Sun doth shine, the moon doth glow.', 'That\'s levitation, holmes.', 'Please don\'t, don\'t offer me anything, I\'ll, I\'ll tell you what I want.', 'Take the six nuggets and throw two of them away. I\'m just wantin\' a four nugget thing.', 'I\'m tryin\' to watch my calorie intake.', 'The most powerful tool in singing technology since yodelling, dude.', 'Do you believe there are robots living among us?', 'With karate I\'ll kick your a**, from here to right over there.', 'Cause it\'s the pick... of destiny.', 'I\'m the devil, I love metal.', 'Do you believe in God?', 'There\'s just no way that we can win, that was a masterpiece.', 'He rocks too hard because he\'s not a mortal man.', 'Yeah that was awesome. Compared to bull***t.', 'Can\'t you see he\'s the man, let me hear you applaud, he is more than a man he\'s a shiny golden god.', 'The demon code prevents me from declining a rock off challenge.', 'I did not mean to blow your mind.', 'New-wave tried to kill the metal.', 'Punk-rock tried to kill the metal.', 'Cause he who is sleazy, is easy to pleasy.', 'Hail Satan.', 'In Venice Beach there was a man named Kage.', 'We know you\'re all robots and we don\'t care Tenacious D, we reign!', 'Dude, I totally miss you.', 'Two air vents on the roof.', 'The government totally sucks.', 'You\'ve disobeyed my orders, son, Why were you ever born?', 'Your brother\'s 10x better than you Jesus loves him more.', 'In the city of fallen angels, where the ocean meets the sand, we will form a strong alliance.', 'Friendship is rare, do you know what I\'m saying to you?', 'I\'m not gonna cook it but I\'ll order it from Zanzibar.', 'Sometimes you have to say please.', 'Whooooahahaha!', 'If me and Lee and KG could be three, flying free tenaciously.', 'Better, closer, warmer.', 'They must pay the rent, with their rock.', 'Techno tried to defile the metal, but techno was proven wrong.', 'Cuz the land of love and freedom is just a baby\'s breath away. If we hold hands together, we can take back the USA.', 'That was awesome. You changed people\'s lives tonight.', 'Ben Franklin was a rebel indeed', 'Do you think it will make us um, more attractive to the ladies?', 'I am not one of you. I come from an ancient time. I am known as The Kicker of Elves. I am also known as The Angel Crusher.', 'We are fuelled by Satan, yes we\'re schooled by Satan.', 'Last week, Kyle quit the band. But now we\'re back together.', 'High above the mucky-muck, castle made of clouds. There sits Wonderboy, sitting oh so proudly.', 'I love you. I said I love you, man. Just wanted to say it.', 'Let\'s take a dip in the strawberry river!', 'And then after the smoke is cleared, and the rubble has been swept away, me and KG will peek out our heads.', 'The second decree: no more pollution, no more car exhaust, or ocean dumpage. From now on, we will travel in tubes! ', 'Riggah-goo-goo, riggah-goo-goo.', 'After years of hesitation, I went ahead and rocked out on the D at a live show. Needless to say, I impregnated everyone in the front row.', 'Long live me, I poisoned  your wine.', 'That---what happened before when I said I love you, that was a test. Because, man, I could\'ve made a total ASS of myself if I hadn\'t done this test on you.', 'How about the power to kill a yak, from 200 yards away, with mind-bullets?', 'Wonderboy, what is the secret of your power?', 'Couldn\'t split up Kato and Nash, that\'s true. Couldn\'t split up Tango and Cash, that\'s also true.'];
+require('./helpers/paragraphs');
 
-},{}],4:[function(require,module,exports){
+require('./precompiled/layout');
+
+require('./context/context');
+
+},{"./context/context":3,"./helpers/paragraphs":4,"./precompiled/layout":6}],6:[function(require,module,exports){
 "use strict";
 
 (function () {
   var template = Handlebars.template,
       templates = Handlebars.templates = Handlebars.templates || {};
   templates['layout'] = template({ "1": function _(container, depth0, helpers, partials, data) {
-      var helper,
-          alias1 = depth0 != null ? depth0 : {},
-          alias2 = helpers.helperMissing,
-          alias3 = "function",
-          alias4 = container.escapeExpression;
+      var helper;
 
-      return "<option value='" + alias4((helper = (helper = helpers.paragraph || (depth0 != null ? depth0.paragraph : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, { "name": "paragraph", "hash": {}, "data": data }) : helper)) + "'>" + alias4((helper = (helper = helpers.paragraph || (depth0 != null ? depth0.paragraph : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, { "name": "paragraph", "hash": {}, "data": data }) : helper)) + "</option>\n";
+      return container.escapeExpression((helper = (helper = helpers.quote || (depth0 != null ? depth0.quote : depth0)) != null ? helper : helpers.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {}, { "name": "quote", "hash": {}, "data": data }) : helper));
     }, "compiler": [7, ">= 4.0.0"], "main": function main(container, depth0, helpers, partials, data) {
-      var stack1,
-          helper,
-          alias1 = depth0 != null ? depth0 : {},
-          alias2 = helpers.helperMissing,
-          alias3 = "function",
-          alias4 = container.escapeExpression;
+      var stack1;
 
-      return "<h1>" + alias4((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, { "name": "title", "hash": {}, "data": data }) : helper)) + "</h1>\n<h3>" + alias4((helper = (helper = helpers.subheading || (depth0 != null ? depth0.subheading : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, { "name": "subheading", "hash": {}, "data": data }) : helper)) + "</h1>\n<select id='paragraph-select' name='paragraph'>\n" + ((stack1 = helpers.each.call(alias1, depth0 != null ? depth0.dropdown : depth0, { "name": "each", "hash": {}, "fn": container.program(1, data, 0), "inverse": container.noop, "data": data })) != null ? stack1 : "") + "</select>\n";
+      return "<div>\n<h1>Tenacious D</h1>\n<h3>lorem ipsum</h3>\n<select id='select'>\n    <option value= \"1\">1</option>\n    <option value= \"2\" selected>2</option>\n    <option value= \"3\">3</option>\n    <option value= \"4\">4</option>\n</select>\n<section>\n" + ((stack1 = (helpers.paragraphs || depth0 && depth0.paragraphs || helpers.helperMissing).call(depth0 != null ? depth0 : {}, depth0 != null ? depth0.quotes : depth0, { "name": "paragraphs", "hash": {}, "fn": container.program(1, data, 0), "inverse": container.noop, "data": data })) != null ? stack1 : "") + "\n</section>\n</div>";
     }, "useData": true });
 })();
 
