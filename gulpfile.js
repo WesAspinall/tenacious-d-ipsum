@@ -1,24 +1,24 @@
 'use-strict';
 
-const gulp = require('gulp');
-      shell = require('gulp-shell');
-      sourcemaps = require('gulp-sourcemaps');
-      source = require('vinyl-source-stream');
-      buffer = require('vinyl-buffer');
+const autoprefixer = require('autoprefixer');
       babel = require('babelify');
       browserify = require('browserify');
+      buffer = require('vinyl-buffer');
       chalk = require('chalk');
-      watch = require('gulp-watch');
-      uglify = require('gulp-uglify');
-      sass = require('gulp-sass');
-      postcss = require('gulp-postcss');
-      autoprefixer = require('autoprefixer');
-      fontAwesome = require('node-font-awesome');
-      webserver = require('gulp-webserver');
       eslint = require('gulp-eslint');
+      fontAwesome = require('node-font-awesome');
+      gulp = require('gulp');
       htmlhint = require('gulp-htmlhint');
       notify = require('gulp-notify');
       plumber = require('gulp-plumber');
+      postcss = require('gulp-postcss');
+      sass = require('gulp-sass');
+      shell = require('gulp-shell');
+      source = require('vinyl-source-stream');
+      sourcemaps = require('gulp-sourcemaps');
+      uglify = require('gulp-uglify');
+      watch = require('gulp-watch');
+      webserver = require('gulp-webserver');
    
 
 var handleError = function(err) {
@@ -37,6 +37,7 @@ gulp.task('sass', () => {
         .pipe(sass({
             includePaths: require('node-neat').with([fontAwesome.scssPath])
         }))
+        .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
         .on('error', handleError)
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./app/css'));
