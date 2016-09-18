@@ -2,8 +2,133 @@
 @import 'neat';
 @import 'font-awesome';
 
-@import 'variables';
+@import './partials/browsers';
 
-*, *:before, *:after {
-    box-sizing: border-box;
+  h1 {
+    font-weight: 900;
+    font-size: 110px;
+    line-height: 110px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+    width: 100%;
+    text-align: center;
+    animation: scaleIn 1s;
+  }
+
+  h2 {
+    font-weight: 400;
+    font-size: 36px;
+    text-align: center;
+    margin: 0;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+#outer-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
+#hero {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  background-size: cover;
+  background-position: left;
+  padding: 30px;
+  box-sizing: border-box;
+  color: #fff;
+
+  div {
+    display: flex;
+    flex: 1;
+    border: 8px solid rgba(255, 255, 255, 0.9);
+    align-items: center;
+  }
+}
+
+#main {
+  flex: 1.25;
+  display: flex;
+  flex-direction: column;
+}
+
+#content {
+  display: flex;
+  flex: 1;
+  overflow: scroll;
+}
+
+#wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: -webkit-min-content;
+  width: 100%;
+}
+
+#box {
+  display: flex;
+  background: #FFF;
+  padding: 100px 100px 0 100px;
+
+  div {
+    width: 100%;
+  }
+
+}
+
+  #lorem {
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+#divider {
+  height: 2px;
+  width: 80px;
+  background: #1A1917;
+  display: block;
+  margin: 40px auto;
+}
+
+#select-style {
+  border: 1px solid #C7C7C7;
+  width: 210px;
+  height: 40px;
+  padding: 0;
+  margin: 0 auto 40px auto;
+}
+
+#select-style:hover {
+  border-color: #1A1917;
+  transition: 0.2s;
+}
+
+#select {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding-left: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 700;
 }

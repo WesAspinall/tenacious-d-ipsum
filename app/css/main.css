@@ -95,35 +95,57 @@ html {
   margin-left: .3em; }
 
 .fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear; }
 
 .fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
   animation: fa-spin 1s infinite steps(8); }
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
 
 @keyframes fa-spin {
   0% {
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
+    -webkit-transform: rotate(359deg);
     transform: rotate(359deg); } }
 
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
   transform: rotate(90deg); }
 
 .fa-rotate-180 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
   transform: rotate(180deg); }
 
 .fa-rotate-270 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
   transform: rotate(270deg); }
 
 .fa-flip-horizontal {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
   transform: scale(-1, 1); }
 
 .fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
   transform: scale(1, -1); }
 
 :root .fa-rotate-90,
@@ -131,8 +153,7 @@ html {
 :root .fa-rotate-270,
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical {
-  -webkit-filter: none;
-          filter: none; }
+  filter: none; }
 
 .fa-stack {
   position: relative;
@@ -2175,7 +2196,228 @@ html {
   overflow: visible;
   clip: auto; }
 
-*, *:before, *:after {
-  box-sizing: border-box; }
+body {
+  /*Tall screens*/
+  /*Short screens*/ }
+  @media (min-height: 1100px) {
+    body #hero {
+      max-width: none;
+      transition: 0.2s; } }
+  @media (min-width: 1450px) and (min-height: 1100px) {
+    body h1 {
+      font-size: 180px;
+      line-height: 180px;
+      transition: 0.2s; } }
+  @media (max-width: 1700px) and (min-height: 1100px) {
+    body h1 {
+      font-size: 140px;
+      line-height: 140px;
+      transition: 0.2s; }
+    body #hero {
+      background-position: -100px 0; } }
+  @media (max-width: 1200px) and (min-height: 1100px) {
+    body body h1 {
+      font-size: 120px;
+      line-height: 120px;
+      transition: 0.2s; }
+    body #main {
+      flex: 0.75;
+      transition: 0.2s; } }
+  @media (max-width: 1000px) and (min-height: 1100px) {
+    body body #hero {
+      background-position: -120px 0; } }
+  @media (max-width: 800px) and (min-height: 1100px) {
+    body body h1 {
+      font-size: 100px;
+      line-height: 100px;
+      transition: 0.2s; } }
+  @media (max-width: 700px) and (min-height: 1100px) {
+    body body #hero {
+      max-height: 800px;
+      background-position: center; } }
+  @media (max-width: 500px) and (min-height: 1100px) {
+    body body h1 {
+      font-size: 80px;
+      line-height: 80px; } }
+  @media (max-width: 1200px) {
+    body h1 {
+      font-size: 100px;
+      line-height: 100px;
+      transition: 0.2s; } }
+  @media (max-width: 1060px) {
+    body #box {
+      padding: 100px 60px; } }
+  @media (max-width: 970px) {
+    body h1 {
+      font-size: 90px;
+      line-height: 90px;
+      transition: 0.2s; }
+    body #hero {
+      background-position: -10px 0;
+      transition: 0.2s; } }
+  @media (max-width: 840px) {
+    body #hero {
+      background-position: -50px 0;
+      transition: 0.2s; }
+    body h1 {
+      font-size: 70px;
+      line-height: 70px;
+      transition: 0.2s; }
+    body #box {
+      padding: 100px 40px; } }
+  @media (max-width: 700px) {
+    body #outer-wrapper {
+      display: block; }
+    body #hero {
+      max-width: none;
+      height: 100vh;
+      background-position: center;
+      transition: 0.2s; }
+    body h1 {
+      font-size: 110px;
+      line-height: 110px; }
+    body #box {
+      padding: 50px 100px; } }
+  @media (max-width: 490px) {
+    body #hero {
+      background-position: -20px 0;
+      transition: 0.2s; }
+    body h1 {
+      font-size: 90px;
+      line-height: 90px;
+      transition: 0.2s; }
+    body #box {
+      padding: 50px; } }
+  @media (max-width: 420px) {
+    body #hero {
+      background-position: -50px 0;
+      transition: 0.2s; }
+    body h1 {
+      font-size: 70px;
+      line-height: 70px;
+      transition: 0.2s; }
+    body #box {
+      padding: 30px; }
+    body #hero {
+      background-position: left;
+      transition: 0.2s; } }
+  @media (max-width: 320px) {
+    body #hero {
+      background-position: left;
+      transition: 0.2s; }
+    body h1 {
+      font-size: 60px;
+      line-height: 60px;
+      transition: 0.2s; } }
+
+h1 {
+  font-weight: 900;
+  font-size: 110px;
+  line-height: 110px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+  width: 100%;
+  text-align: center;
+  animation: scaleIn 1s; }
+
+h2 {
+  font-weight: 400;
+  font-size: 36px;
+  text-align: center;
+  margin: 0; }
+
+h3 {
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  margin: 10px 0; }
+
+#outer-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex; }
+
+#hero {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  background-size: cover;
+  background-position: left;
+  padding: 30px;
+  box-sizing: border-box;
+  color: #fff; }
+  #hero div {
+    display: flex;
+    flex: 1;
+    border: 8px solid rgba(255, 255, 255, 0.9);
+    align-items: center; }
+
+#main {
+  flex: 1.25;
+  display: flex;
+  flex-direction: column; }
+
+#content {
+  display: flex;
+  flex: 1;
+  overflow: scroll; }
+
+#wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: -webkit-min-content;
+  width: 100%; }
+
+#box {
+  display: flex;
+  background: #FFF;
+  padding: 100px 100px 0 100px; }
+  #box div {
+    width: 100%; }
+
+#lorem {
+  max-width: 580px;
+  margin: 0 auto; }
+
+#divider {
+  height: 2px;
+  width: 80px;
+  background: #1A1917;
+  display: block;
+  margin: 40px auto; }
+
+#select-style {
+  border: 1px solid #C7C7C7;
+  width: 210px;
+  height: 40px;
+  padding: 0;
+  margin: 0 auto 40px auto; }
+
+#select-style:hover {
+  border-color: #1A1917;
+  transition: 0.2s; }
+
+#select {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding-left: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 700; }
 
 /*# sourceMappingURL=main.css.map */

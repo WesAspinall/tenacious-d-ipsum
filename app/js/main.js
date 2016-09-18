@@ -9828,6 +9828,10 @@ module.exports = exports['default'];
 },{}],3:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _jquery = require('jquery');
@@ -9838,21 +9842,28 @@ var _assetsData = require('../assets/data');
 
 var _assetsData2 = _interopRequireDefault(_assetsData);
 
-'use-strict';
+var IpsumCtrl = function IpsumCtrl() {
 
-(function () {
+    this.paragraphs = paragraphs;
+    this.selectChange = selectChange;
 
     function paragraphs() {
-        var output = '';
 
+        var output = '';
         var selectVal = (0, _jquery2['default'])('#select').val();
+
+        // length of paragraph is random within
+        // the bounds of 666 and 333 characters
         var randomLength = Math.floor(Math.random() * 0.5 * 666) + 666;
 
+        // number of paragraphs determined by
+        // the value of #selector
         for (var i = 0; i < selectVal; i++) {
-
             var p = '<p>';
-            while (p.length <= randomLength) {
 
+            while (p.length <= randomLength) {
+                // quotes are randomly chosen
+                // from the quotes array
                 var randomIndex = Math.floor(Math.random() * _assetsData2['default'].length);
                 p += ' ' + _assetsData2['default'][randomIndex].quote;
             }
@@ -9861,20 +9872,54 @@ var _assetsData2 = _interopRequireDefault(_assetsData);
             output += p;
         }
 
-        (0, _jquery2['default'])('#output').html(output);
+        //output is placed in #paragraphs
+        (0, _jquery2['default'])('#ipsum').html(output);
     }
 
-    (0, _jquery2['default'])(document).ready(function () {
+    function selectChange() {
 
-        paragraphs();
         (0, _jquery2['default'])('#select').change(function () {
             paragraphs();
             (0, _jquery2['default'])('#select').val();
         });
+    }
+};
+
+exports['default'] = IpsumCtrl;
+module.exports = exports['default'];
+
+},{"../assets/data":2,"jquery":1}],4:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _assetsData = require('../assets/data');
+
+var _assetsData2 = _interopRequireDefault(_assetsData);
+
+var _IpsumCtrl = require('./IpsumCtrl');
+
+var _IpsumCtrl2 = _interopRequireDefault(_IpsumCtrl);
+
+'use-strict';
+
+(function () {
+
+    var activate = new _IpsumCtrl2['default']();
+    var paragraphs = activate.paragraphs;
+    var selectChange = activate.selectChange;
+
+    (0, _jquery2['default'])(document).ready(function () {
+        paragraphs();
+        selectChange();
     });
 })();
 
-},{"../assets/data":2,"jquery":1}]},{},[3])
+},{"../assets/data":2,"./IpsumCtrl":3,"jquery":1}]},{},[4])
 
 
 //# sourceMappingURL=main.js.map

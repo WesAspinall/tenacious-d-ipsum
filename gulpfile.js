@@ -37,9 +37,7 @@ gulp.task('sass', () => {
         .pipe(sass({
             includePaths: require('node-neat').with([fontAwesome.scssPath])
         }))
-        .pipe(postcss([autoprefixer({
-            browsers: ['last 2 versions']
-        })])).on('error', handleError)
+        .on('error', handleError)
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./app/css'));
 });
@@ -81,7 +79,7 @@ gulp.task('browserify', () => {
 
 gulp.task('watch', () => {
     watch('./src/sass/**/*.scss', () => gulp.start('sass'));
-    watch(['./src/js/**/*.js', './package.json', './src/views/precompiled/*'], () => gulp.start(['browserify']));
+    watch(['./src/js/**/*.js', './package.json'], () => gulp.start(['browserify']));
     watch('./app/index.html', () => gulp.start('hint:html'));
     watch('./src/js/**/*.js', () => gulp.start('style:js'));
 });
