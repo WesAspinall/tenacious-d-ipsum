@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import quotes from '../assets/data';
+import quotes from '../models/data';
 
 var IpsumCtrl = function() {
 
@@ -17,7 +17,7 @@ var IpsumCtrl = function() {
         var randomLength = Math.floor(Math.random() * 0.5 * 666) + 666;
 
         // number of paragraphs determined by
-        // the value of #selector
+        // the value of #select
         for (var i = 0; i < selectVal; i++) {
             var p = '<p>';
 
@@ -32,14 +32,16 @@ var IpsumCtrl = function() {
             output += p;
         }
 
-        //output is placed in #paragraphs
+        //output is placed in #ipsum
         $('#ipsum').html(output);
     }
 
-
+    // when the #select value has changed
+    // run the paragraph function with the updated
+    // #select value
     function selectChange() {
 
-       $('#select').change(() => {
+        $('#select').change(() => {
             paragraphs();
             $('#select').val();
         });

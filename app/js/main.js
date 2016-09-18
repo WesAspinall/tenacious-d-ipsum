@@ -9818,17 +9818,6 @@ return jQuery;
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-     value: true
-});
-var quotes = [{ quote: 'Dude.' }, { quote: 'Give it up for KG, give it up for me.' }, { quote: 'We\'ll lead as Two Kings, We\'ll f***in\' lead as Two Kings.' }, { quote: 'Lee-Lee-Lee Lee-Lee Lee-Lee-Lee-Lee.' }, { quote: 'Get the scientists working on the tube technology, immediately. Chop chop!' }, { quote: 'This is just a tribute.' }, { quote: 'The sun doth shine and the moon doth glow.' }, { quote: 'That\'s levitation, holmes.' }, { quote: 'Please don\'t, don\'t offer me anything, I\'ll, I\'ll tell you what I want.' }, { quote: 'Take the six nuggets and throw two of them away. I\'m just wantin\' a four nugget thing.' }, { quote: 'I\'m tryin\' to watch my calorie intake.' }, { quote: 'The most powerful tool in singing technology since yodelling, dude.' }, { quote: 'Do you believe there are robots living among us?' }, { quote: 'With karate I\'ll kick your a**, from here to right over there.' }, { quote: 'Cause it\'s the pick... of destiny.' }, { quote: 'I\'m the devil, I love metal.' }, { quote: 'Do you believe in God?' }, { quote: 'There\'s just no way that we can win, that was a masterpiece.' }, { quote: 'He rocks too hard because he\'s not a mortal man.' }, { quote: 'Yeah that was awesome. Compared to bull***t.' }, { quote: 'Can\'t you see he\'s the man, let me hear you applaud, he is more than a man he\'s a shiny golden god.' }, { quote: 'The demon code prevents me from declining a rock off challenge.' }, { quote: 'I did not mean to blow your mind.' }, { quote: 'New-wave tried to kill the metal.' }, { quote: 'Punk-rock tried to kill the metal.' }, { quote: 'Cause he who is sleazy, is easy to pleasy.' }, { quote: 'Hail Satan.' }, { quote: 'In Venice Beach there was a man named Kage.' }, { quote: 'We know you\'re all robots and we don\'t care Tenacious D, we reign!' }, { quote: 'Dude, I totally miss you.' }, { quote: 'Two air vents on the roof.' }, { quote: 'The government totally sucks.' }, { quote: 'You\'ve disobeyed my orders, son, Why were you ever born?' }, { quote: 'Your brother\'s 10x better than you Jesus loves him more.' }, { quote: 'In the city of fallen angels, where the ocean meets the sand, we will form a strong alliance.' }, { quote: 'Friendship is rare, do you know what I\'m saying to you?' }, { quote: 'I\'m not gonna cook it but I\'ll order it from Zanzibar.' }, { quote: 'Sometimes you have to say please.' }, { quote: 'Whooooahahaha!' }, { quote: 'If me and Lee and KG could be three, flying free tenaciously.' }, { quote: 'Better, closer, warmer.' }, { quote: 'They must pay the rent, with their rock.' }, { quote: 'Techno tried to defile the metal, but techno was proven wrong.' }, { quote: 'Cuz the land of love and freedom is just a baby\'s breath away. If we hold hands together, we can take back the USA.' }, { quote: 'That was awesome. You changed people\'s lives tonight.' }, { quote: 'Ben Franklin was a rebel indeed' }, { quote: 'Do you think it will make us um, more attractive to the ladies?' }, { quote: 'I am not one of you. I come from an ancient time. I am known as The Kicker of Elves. I am also known as The Angel Crusher.' }, { quote: 'We are fuelled by Satan, yes we\'re schooled by Satan.' }, { quote: 'Last week, Kyle quit the band. But now we\'re back together.' }, { quote: 'High above the mucky-muck, castle made of clouds. There sits Wonderboy, sitting oh so proudly.' }, { quote: 'I love you. I said I love you, man. Just wanted to say it.' }, { quote: 'Let\'s take a dip in the strawberry river!' }, { quote: 'And then after the smoke is cleared, and the rubble has been swept away, me and KG will peek out our heads.' }, { quote: 'The second decree: no more pollution, no more car exhaust, or ocean dumpage. From now on, we will travel in tubes! ' }, { quote: 'Riggah-goo-goo, riggah-goo-goo.' }, { quote: 'After years of hesitation, I went ahead and rocked out on the D at a live show. Needless to say, I impregnated everyone in the front row.' }, { quote: 'Long live me, I poisoned  your wine.' }, { quote: 'That---what happened before when I said I love you, that was a test. Because, man, I could\'ve made a total ASS of myself if I hadn\'t done this test on you.' }, { quote: 'How about the power to kill a yak, from 200 yards away, with mind-bullets?' }, { quote: 'Wonderboy, what is the secret of your power?' }, { quote: 'Couldn\'t split up Kato and Nash, that\'s true. Couldn\'t split up Tango and Cash, that\'s also true.' }];
-
-exports['default'] = quotes;
-module.exports = exports['default'];
-
-},{}],3:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
     value: true
 });
 
@@ -9838,9 +9827,9 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _assetsData = require('../assets/data');
+var _modelsData = require('../models/data');
 
-var _assetsData2 = _interopRequireDefault(_assetsData);
+var _modelsData2 = _interopRequireDefault(_modelsData);
 
 var IpsumCtrl = function IpsumCtrl() {
 
@@ -9857,25 +9846,28 @@ var IpsumCtrl = function IpsumCtrl() {
         var randomLength = Math.floor(Math.random() * 0.5 * 666) + 666;
 
         // number of paragraphs determined by
-        // the value of #selector
+        // the value of #select
         for (var i = 0; i < selectVal; i++) {
             var p = '<p>';
 
             while (p.length <= randomLength) {
                 // quotes are randomly chosen
                 // from the quotes array
-                var randomIndex = Math.floor(Math.random() * _assetsData2['default'].length);
-                p += ' ' + _assetsData2['default'][randomIndex].quote;
+                var randomIndex = Math.floor(Math.random() * _modelsData2['default'].length);
+                p += ' ' + _modelsData2['default'][randomIndex].quote;
             }
 
             p += '</p>';
             output += p;
         }
 
-        //output is placed in #paragraphs
+        //output is placed in #ipsum
         (0, _jquery2['default'])('#ipsum').html(output);
     }
 
+    // when the #select value has changed
+    // run the paragraph function with the updated
+    // #select value
     function selectChange() {
 
         (0, _jquery2['default'])('#select').change(function () {
@@ -9888,7 +9880,7 @@ var IpsumCtrl = function IpsumCtrl() {
 exports['default'] = IpsumCtrl;
 module.exports = exports['default'];
 
-},{"../assets/data":2,"jquery":1}],4:[function(require,module,exports){
+},{"../models/data":4,"jquery":1}],3:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -9897,15 +9889,9 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _assetsData = require('../assets/data');
-
-var _assetsData2 = _interopRequireDefault(_assetsData);
-
 var _IpsumCtrl = require('./IpsumCtrl');
 
 var _IpsumCtrl2 = _interopRequireDefault(_IpsumCtrl);
-
-'use-strict';
 
 (function () {
 
@@ -9919,7 +9905,18 @@ var _IpsumCtrl2 = _interopRequireDefault(_IpsumCtrl);
     });
 })();
 
-},{"../assets/data":2,"./IpsumCtrl":3,"jquery":1}]},{},[4])
+},{"./IpsumCtrl":2,"jquery":1}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+     value: true
+});
+var quotes = [{ quote: 'And then after the smoke is cleared, and the rubble has been swept away, me and KG will peek out our heads.' }, { quote: 'Are you willing to make the commitment to wakin\' up at the crack a\' noon, for deep-knee rock squats!? Seven or eight at a time, in a row? ' }, { quote: 'Ben Franklin was a rebel indeed.' }, { quote: 'Better, closer, warmer.' }, { quote: 'Can\'t you see he\'s the man, let me hear you applaud, he is more than a man he\'s a shiny golden god.' }, { quote: 'Cause he who is sleazy, is easy to pleasy.' }, { quote: 'Cause it\'s the pick... of destiny.' }, { quote: 'Couldn\'t split up Kato and Nash, that\'s true. Couldn\'t split up Tango and Cash, that\'s also true.' }, { quote: 'Cuz the land of love and freedom is just a baby\'s breath away. If we hold hands together, we can take back the USA.' }, { quote: 'Do you believe in God?' }, { quote: 'Do you believe there are robots living among us?' }, { quote: 'Do you think it will make us um, more attractive to the ladies?' }, { quote: 'Dude, I totally miss you.' }, { quote: 'Dude.' }, { quote: 'Friendship is rare, do you know what I\'m saying to you?' }, { quote: 'Get the scientists working on the tube technology, immediately. Chop chop!' }, { quote: 'Give it up for KG, give it up for me.' }, { quote: 'Hail Satan.' }, { quote: 'He rocks too hard because he\'s not a mortal man.' }, { quote: 'High above the mucky-muck, castle made of clouds. There sits Wonderboy, sitting oh so proudly.' }, { quote: 'How about the power to kill a yak, from 200 yards away, with mind-bullets?' }, { quote: 'I am not one of you. I come from an ancient time. I am known as The Kicker of Elves. I am also known as The Angel Crusher.' }, { quote: 'I did not mean to blow your mind.' }, { quote: 'I love you. I said I love you, man. Just wanted to say it.' }, { quote: 'I\'m not gonna cook it but I\'ll order it from Zanzibar.' }, { quote: 'I\'m the devil, I love metal.' }, { quote: 'I\'m tryin\' to watch my calorie intake.' }, { quote: 'If me and Lee and KG could be three, flying free tenaciously.' }, { quote: 'In the city of fallen angels, where the ocean meets the sand, we will form a strong alliance.' }, { quote: 'In Venice Beach there was a man named Kage.' }, { quote: 'Last week, Kyle quit the band. But now we\'re back together.' }, { quote: 'Lee-Lee-Lee Lee-Lee Lee-Lee-Lee-Lee.' }, { quote: 'Let\'s take a dip in the strawberry river!' }, { quote: 'Long live me, I poisoned  your wine.' }, { quote: 'New-wave tried to kill the metal.' }, { quote: 'Please don\'t, don\'t offer me anything, I\'ll, I\'ll tell you what I want.' }, { quote: 'Punk-rock tried to kill the metal.' }, { quote: 'Riggah-goo-goo, riggah-goo-goo.' }, { quote: 'Sometimes you have to say please.' }, { quote: 'Take the six nuggets and throw two of them away. I\'m just wantin\' a four nugget thing.' }, { quote: 'Techno tried to defile the metal, but techno was proven wrong.' }, { quote: 'That was awesome. You changed people\'s lives tonight.' }, { quote: 'That---what happened before when I said I love you, that was a test. Because, man, I could\'ve made a total ASS of myself if I hadn\'t done this test on you.' }, { quote: 'That\'s levitation, holmes.' }, { quote: 'The demon code prevents me from declining a rock off challenge.' }, { quote: 'The government totally sucks.' }, { quote: 'The most powerful tool in singing technology since yodelling, dude.' }, { quote: 'The second decree: no more pollution, no more car exhaust, or ocean dumpage. From now on, we will travel in tubes! ' }, { quote: 'The sun doth shine and the moon doth glow.' }, { quote: 'There\'s just no way that we can win, that was a masterpiece.' }, { quote: 'They must pay the rent, with their rock.' }, { quote: 'This is just a tribute.' }, { quote: 'Two air vents on the roof.' }, { quote: 'We are fuelled by Satan, yes we\'re schooled by Satan.' }, { quote: 'We know you\'re all robots and we don\'t care Tenacious D, we reign!' }, { quote: 'We\'ll lead as Two Kings, We\'ll f***in\' lead as Two Kings.' }, { quote: 'What we got is gonna turn your brain into s**t' }, { quote: 'Whooooahahaha!' }, { quote: 'With karate I\'ll kick your a**, from here to right over there.' }, { quote: 'Wonderboy, what is the secret of your power?' }, { quote: 'Yeah that was awesome. Compared to bull***t.' }, { quote: 'You\'ve disobeyed my orders, son, Why were you ever born?' }, { quote: 'Your brother\'s 10x better than you Jesus loves him more.' }];
+
+exports['default'] = quotes;
+module.exports = exports['default'];
+
+},{}]},{},[3])
 
 
 //# sourceMappingURL=main.js.map
