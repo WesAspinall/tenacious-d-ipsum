@@ -1,0 +1,176 @@
+body {
+    /*Tall screens*/
+@media (min-height: 1100px) {
+  #hero {
+    max-width: none;
+    transition: 0.2s;
+  }
+}
+
+@media (min-width: 1450px) and (min-height: 1100px) {
+  h1 {
+    font-size: 180px;
+    line-height: 180px;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 1700px) and (min-height: 1100px) {
+  h1 {
+    font-size: 140px;
+    line-height: 140px;
+    transition: 0.2s;
+  }
+  #hero {
+    background-position: -100px 0;
+  }
+}
+
+@media (max-width: 1200px) and (min-height: 1100px) {
+  body h1 {
+    font-size: 120px;
+    line-height: 120px;
+    transition: 0.2s;
+  }
+  #main {
+    flex: 0.75;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 1000px) and (min-height: 1100px) {
+  body #hero {
+    background-position: -120px 0;
+  }
+}
+
+@media (max-width: 800px) and (min-height: 1100px) {
+  body h1 {
+    font-size: 100px;
+    line-height: 100px;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 700px) and (min-height: 1100px) {
+  body #hero {
+    max-height: 800px;
+    background-position: center;
+  }
+}
+
+@media (max-width: 500px) and (min-height: 1100px) {
+  body h1 {
+    font-size: 80px;
+    line-height: 80px;
+  }
+}
+
+/*Short screens*/
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 100px;
+    line-height: 100px;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 1060px) {
+  #box {
+    padding: 100px 60px;
+  }
+}
+
+@media (max-width: 970px) {
+  h1 {
+    font-size: 90px;
+    line-height: 90px;
+    transition: 0.2s;
+  }
+  #hero {
+    background-position: -10px 0;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 840px) {
+  #hero {
+    background-position: -50px 0;
+    transition: 0.2s;
+  }
+  h1 {
+    font-size: 70px;
+    line-height: 70px;
+    transition: 0.2s;
+  }
+  #box {
+    padding: 100px 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  #outer-wrapper {
+    display: block;
+  }
+  #hero {
+    max-width: none;
+    height: 100vh;
+    background-position: center;
+    transition: 0.2s;
+  }
+  h1 {
+    font-size: 110px;
+    line-height: 110px;
+  }
+  #box {
+    padding: 50px 100px;
+  }
+}
+
+@media (max-width: 490px) {
+  #hero {
+    background-position: -20px 0;
+    transition: 0.2s;
+  }
+  h1 {
+    font-size: 90px;
+    line-height: 90px;
+    transition: 0.2s;
+  }
+  #box {
+    padding: 50px;
+  }
+}
+
+@media (max-width: 420px) {
+  #hero {
+    background-position: -50px 0;
+    transition: 0.2s;
+  }
+  h1 {
+    font-size: 70px;
+    line-height: 70px;
+    transition: 0.2s;
+  }
+  #box {
+    padding: 30px;
+  }
+  #hero {
+    background-position: left;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 320px) {
+  #hero {
+    background-position: left;
+    transition: 0.2s;
+  }
+  h1 {
+    font-size: 60px;
+    line-height: 60px;
+    transition: 0.2s;
+  }
+}
+
+}
